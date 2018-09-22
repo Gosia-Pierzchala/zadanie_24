@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mieszkania</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+<body>
+
+<div style="margin: auto; width: 400px">
+
+    <a href="/dodajMieszkanie">Dodaj mieszkanie</a>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Numer</th>
+            <th>Powierzchnia</th>
+            <th>Id wspólnoty</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="flat: ${flats}">
+            <td>
+                <a th:href="'/flat?id=' + ${flat.id}" th:text="${flat.number}"></a>
+            </td>
+            <td th:text="${flat.area}"></td>
+            <td th:text="${flat.community.id}"></td>
+            <td>
+                <a th:href="'/edytujMieszkanie?id=' + ${flat.id}">Edycja</a>
+                <a th:href="'/usunMieszkanie?id=' + ${flat.id}">Usuń</a>
+            </td>
+        </tr></tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mieszkańcy</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+<body>
+
+<div style="margin: auto; width: 400px">
+
+    <a href="/dodajOsobe">Dodaj osobę</a>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Id mieszkania</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="person: ${people}">
+            <td>
+                <a th:href="'/person?id=' + ${person.id}" th:text="${person.firstName}"></a>
+            </td>
+            <td th:text="${person.lastName}"></td>
+            <td th:text="${person.flat.id}"></td>
+            <td>
+                <a th:href="'/edytujOsobe?id=' + ${person.id}">Edycja</a>
+                <a th:href="'/usunOsobe?id=' + ${person.id}">Usuń</a>
+            </td>
+        </tr></tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>

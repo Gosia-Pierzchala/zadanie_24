@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mieszkania</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+<body>
+
+<div style="margin: auto; width: 400px">
+
+    <form action="/edytujMieszkanie" method="post" th:object="${flat}">
+        <p><input type="hidden" th:field="*{id}" placeholder="ID" /></p>
+        <p>Numer mieszkania: <input type="number" th:field="*{number}"/></p>
+        <p>Powierzchnia: <input type="number" th:field="*{area}"/></p>
+        <p>Id wspólnoty: <select th:field="*{community}">
+            <option th:each="community: ${communities}" th:text="${community.id}" th:value="${community.id}" ></option>
+            </select></p>
+        <input type="submit" value="Edytuj" />
+    </form>
+
+</div>
+
+</body>
+</html>
