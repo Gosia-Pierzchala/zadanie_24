@@ -14,12 +14,10 @@ import java.util.Optional;
 public class CommunityController {
 
     private CommunityRepository communityRepository;
-    private FlatRepository flatRepository;
     private OccupantRepository occupantRepository;
 
-    public CommunityController(CommunityRepository communityRepository, FlatRepository flatRepository, OccupantRepository occupantRepository) {
+    public CommunityController(CommunityRepository communityRepository, OccupantRepository occupantRepository) {
         this.communityRepository = communityRepository;
-        this.flatRepository = flatRepository;
         this.occupantRepository = occupantRepository;
     }
 
