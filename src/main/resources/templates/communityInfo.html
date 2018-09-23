@@ -13,7 +13,51 @@
 
     <h1 th:text="'Nazwa wspólnoty: ' + ${community.name}"></h1>
     <h1 th:text="'Adres: ' + ${community.address}"></h1>
+    <h1>Mieszkania: </h1>
 
+</div>
+
+<div style="width: 400px">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Numer</th>
+            <th>Powierzchnia</th>
+            <th>Id wspólnoty</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="flat: ${flats}">
+            <td th:text="${flat.id}"></td>
+            <td th:text="${flat.number}"></td>
+            <td th:text="${flat.area}"></td>
+            <td th:text="${flat.community.id}"></td>
+        </tr></tbody>
+    </table>
+</div>
+
+<h1 th:text="'Suma powierzchni mieszkań to: ' + ${sum}"></h1>
+
+<div style="width: 400px">
+    <h1>Mieszkańcy: </h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Płeć</th>
+            <th>Id mieszkania</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="person: ${occupants}">
+            <td th:text="${person.firstName}"></td>
+            <td th:text="${person.lastName}"></td>
+            <td th:text="${person.gender}"></td>
+            <td th:text="${person.flat.id}"></td>
+        </tr></tbody>
+    </table>
 </div>
 
 </body>

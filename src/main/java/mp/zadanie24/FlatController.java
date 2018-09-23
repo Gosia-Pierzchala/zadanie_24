@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,10 +15,12 @@ public class FlatController {
 
     private FlatRepository flatRepository;
     private CommunityRepository communityRepository;
+    private OccupantRepository occupantRepository;
 
-    public FlatController(FlatRepository flatRepository, CommunityRepository communityRepository) {
+    public FlatController(FlatRepository flatRepository, CommunityRepository communityRepository, OccupantRepository occupantRepository) {
         this.flatRepository = flatRepository;
         this.communityRepository = communityRepository;
+        this.occupantRepository = occupantRepository;
     }
 
     @GetMapping("/flats")
@@ -76,6 +79,15 @@ public class FlatController {
         if(optional.isPresent()) {
             Flat flat = optional.get();
             model.addAttribute("flat", flat);
+            List<Occupant> occupants = occupantRepository.findAll();
+            List<Occupant> flatOccupants = new ArrayList<>();
+            for (int i = 0; i < occupants.size(); i++) {
+                Occupant occupant = occupants.get(i);
+                if(occupant.getFlat().equals(flat)){
+                    flatOccupants.add(occupant);
+                }
+            }
+            model.addAttribute("occupants", flatOccupants);
             return "flatInfo";
         } else return "redirect:/flats";
     }
