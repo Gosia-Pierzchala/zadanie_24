@@ -21,7 +21,7 @@ public class OccupantController {
     }
 
     @GetMapping("/people")
-    public String person(Model model){
+    public String person(Model model) {
         List<Occupant> people = occupantRepository.findAll();
         model.addAttribute("people", people);
         return "people";
@@ -30,7 +30,7 @@ public class OccupantController {
     @GetMapping("/usunOsobe")
     public String delete(@RequestParam Long id) {
         Optional<Occupant> optional = occupantRepository.findById(id);
-        if(optional.isPresent()) {
+        if (optional.isPresent()) {
             Occupant occupant = optional.get();
             occupantRepository.delete(occupant);
         }
@@ -53,7 +53,7 @@ public class OccupantController {
     @GetMapping("/edytujOsobe")
     public String edit(@RequestParam Long id, Model model) {
         Optional<Occupant> optional = occupantRepository.findById(id);
-        if(optional.isPresent()) {
+        if (optional.isPresent()) {
             Occupant occupant = optional.get();
             model.addAttribute("person", occupant);
             model.addAttribute("flats", flatRepository.findAll());
@@ -67,15 +67,5 @@ public class OccupantController {
     public String edit(Occupant occupant) {
         occupantRepository.save(occupant);
         return "redirect:/people";
-    }
-
-    @GetMapping("/person")
-    public String info(@RequestParam Long id, Model model) {
-        Optional<Occupant> optional = occupantRepository.findById(id);
-        if(optional.isPresent()) {
-            Occupant occupant = optional.get();
-            model.addAttribute("person", occupant);
-            return "personInfo";
-        } else return "redirect:/people";
     }
 }

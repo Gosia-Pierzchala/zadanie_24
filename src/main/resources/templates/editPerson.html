@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mieszkańcy</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+<body>
+
+<div style="margin: auto; width: 400px">
+
+    <form action="/edytujOsobe" method="post" th:object="${person}">
+        <p><input type="hidden" th:field="*{id}" placeholder="ID" /></p>
+        <p>Imię: <input type="text" th:field="*{firstName}"/></p>
+        <p>Nazwisko: <input type="text" th:field="*{lastName}"/></p>
+        <p>Płeć: <input type="text" th:field="*{gender}"/></p>
+        <p>Id mieszkania: <select th:field="*{flat}">
+            <option th:each="flat: ${flats}" th:text="${flat.id}" th:value="${flat.id}" ></option>
+        </select></p>
+        <input type="submit" value="Edytuj" />
+    </form>
+
+</div>
+
+</body>
+</html>

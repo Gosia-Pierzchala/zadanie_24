@@ -11,23 +11,23 @@
 
 <div style="margin: auto; width: 400px">
 
-    <a href="/dodajOsobe">Dodaj osobę</a>
+    <a href="/dodajOsobe">Dodaj mieszkańca</a>
 
     <table class="table">
         <thead>
         <tr>
             <th>Imię</th>
             <th>Nazwisko</th>
+            <th>Płeć</th>
             <th>Id mieszkania</th>
             <th></th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="person: ${people}">
-            <td>
-                <a th:href="'/person?id=' + ${person.id}" th:text="${person.firstName}"></a>
-            </td>
+            <td th:text="${person.firstName}"></td>
             <td th:text="${person.lastName}"></td>
+            <td th:text="${person.gender}"></td>
             <td th:text="${person.flat.id}"></td>
             <td>
                 <a th:href="'/edytujOsobe?id=' + ${person.id}">Edycja</a>
